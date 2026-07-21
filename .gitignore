@@ -1,0 +1,4 @@
+# Generated PNGs (we use WebP for web)
+images/*.png
+# Generation scripts (not needed in deployed site)
+scripts/

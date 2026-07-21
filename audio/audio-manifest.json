@@ -1,0 +1,132 @@
+{
+  "voices": {
+    "zh": "zh-CN-XiaoxiaoNeural",
+    "en": "en-US-GuyNeural"
+  },
+  "rates": {
+    "zh": "-8%",
+    "en": "+0%"
+  },
+  "tracks": [
+    {
+      "id": 1,
+      "files": {
+        "zh": "audio/zh/01.mp3",
+        "en": "audio/en/01.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 2,
+      "files": {
+        "zh": "audio/zh/02.mp3",
+        "en": "audio/en/02.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 3,
+      "files": {
+        "zh": "audio/zh/03.mp3",
+        "en": "audio/en/03.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 4,
+      "files": {
+        "zh": "audio/zh/04.mp3",
+        "en": "audio/en/04.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 5,
+      "files": {
+        "zh": "audio/zh/05.mp3",
+        "en": "audio/en/05.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 6,
+      "files": {
+        "zh": "audio/zh/06.mp3",
+        "en": "audio/en/06.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 7,
+      "files": {
+        "zh": "audio/zh/07.mp3",
+        "en": "audio/en/07.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    },
+    {
+      "id": 8,
+      "files": {
+        "zh": "audio/zh/08.mp3",
+        "en": "audio/en/08.mp3"
+      },
+      "voices": {
+        "zh": "zh-CN-XiaoxiaoNeural",
+        "en": "en-US-GuyNeural"
+      },
+      "rates": {
+        "zh": "-8%",
+        "en": "+0%"
+      }
+    }
+  ]
+}
