@@ -374,12 +374,19 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
 
 .chapter {
   margin-bottom: 6rem;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: chapterReveal 0.8s var(--ease) forwards;
+  opacity: 1;
+  transform: translateY(0);
 }
-.chapter.hidden-init { opacity: 0; animation: none; }
+/* JS adds this class initially, then reveals via IntersectionObserver */
+.chapter.hidden-init { opacity: 0; transform: translateY(30px); }
 .chapter.revealed { animation: chapterReveal 0.8s var(--ease) forwards; }
+/* Fallback: if JS never runs or observer fails, show content after 3s */
+@keyframes fallbackReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+.chapter.hidden-init {
+  animation: fallbackReveal 0.6s 3s var(--ease) forwards;
+}
 
 @keyframes chapterReveal {
   to { opacity: 1; transform: translateY(0); }
@@ -439,7 +446,9 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
   margin: 0 -2rem 2.5rem;
   position: relative;
   background: var(--rice-dark);
+  /* aspect-ratio fallback for iOS < 15 */
   aspect-ratio: 16/9;
+  padding-bottom: 56.25%; /* 9/16 = 56.25% — iOS fallback */
   /* Ink border — thin, slightly textured */
   border: 2px solid var(--ink);
   outline: 1px solid rgba(26,20,16,0.15);
@@ -450,7 +459,14 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
     0 4px 20px rgba(26,20,16,0.08);
   overflow: hidden;
 }
+/* If aspect-ratio is supported, remove padding fallback */
+@supports (aspect-ratio: 16/9) {
+  .chapter__illustration { padding-bottom: 0; }
+}
 .chapter__illustration img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

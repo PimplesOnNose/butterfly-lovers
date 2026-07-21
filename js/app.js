@@ -90,7 +90,10 @@
           <p class="chapter__title-en">${ch.title.en}</p>
         </header>
         <figure class="chapter__illustration">
-          <img src="images/${ch.image}.webp" alt="Illustration for ${ch.title.en}" loading="lazy">
+          <img src="images/${ch.image}.webp" 
+               alt="Illustration for ${ch.title.en}" 
+               loading="lazy"
+               onerror="this.onerror=null;this.src='images/${ch.image}.png'">
         </figure>
         <div class="chapter__text">
           <div class="text-zh ${state.currentLang !== 'zh' ? 'hidden' : ''}">
@@ -193,14 +196,17 @@
     loadChapterAudio(id, state.autoplay);
     // Show player
     dom.player.classList.add('visible');
+    // Explicitly reveal the chapter (iOS fix: IntersectionObserver may not fire)
+    const el = document.getElementById(`chapter-${id}`);
+    if (el) {
+      el.classList.remove('hidden-init');
+      el.classList.add('revealed');
+    }
     // Scroll
-    if (scrollTo) {
-      const el = document.getElementById(`chapter-${id}`);
-      if (el) {
-        const offset = dom.toolbar.offsetHeight + 16;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+    if (scrollTo && el) {
+      const offset = dom.toolbar.offsetHeight + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   }
 
@@ -241,14 +247,21 @@
   function bindEvents() {
     // Begin button
     dom.beginBtn.addEventListener('click', () => {
+      // iOS fix: use opacity + visibility instead of display:none transition
       dom.hero.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
       dom.hero.style.opacity = '0';
       dom.hero.style.transform = 'translateY(-40px)';
+      dom.hero.style.pointerEvents = 'none';
       setTimeout(() => {
-        dom.hero.style.display = 'none';
+        dom.hero.style.visibility = 'hidden';
+        dom.hero.style.height = '0';
+        dom.hero.style.minHeight = '0';
+        dom.hero.style.overflow = 'hidden';
         dom.story.classList.remove('story-hidden');
+        // Force layout recalc before scrolling (iOS fix)
+        void dom.story.offsetHeight;
         goToChapter(1, true);
-      }, 800);
+      }, 850);
     });
 
     // Language toggle
