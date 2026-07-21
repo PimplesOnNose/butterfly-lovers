@@ -437,11 +437,18 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
 /* ── Illustration ── */
 .chapter__illustration {
   margin: 0 -2rem 2.5rem;
-  border-radius: 2px;
-  overflow: hidden;
   position: relative;
   background: var(--rice-dark);
   aspect-ratio: 16/9;
+  /* Ink border — thin, slightly textured */
+  border: 2px solid var(--ink);
+  outline: 1px solid rgba(26,20,16,0.15);
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 5px var(--rice),
+    0 0 0 6px rgba(26,20,16,0.08),
+    0 4px 20px rgba(26,20,16,0.08);
+  overflow: hidden;
 }
 .chapter__illustration img {
   width: 100%;
@@ -453,14 +460,53 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
   transform: scale(1.02);
 }
 
-/* Subtle frame around illustration */
-.chapter__illustration::after {
+/* Ink border inner glow — faded edge like aged scroll */
+.chapter__illustration::before {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(26,20,16,0.08);
+  z-index: 2;
   pointer-events: none;
+  box-shadow: inset 0 0 30px rgba(26,20,16,0.12);
 }
+
+/* Red seal stamp (印章) — bottom right */
+.chapter__illustration::after {
+  content: '梁祝';
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-zh-title);
+  font-size: 14px;
+  color: var(--vermillion);
+  background: rgba(245, 240, 230, 0.85);
+  border: 2px solid var(--vermillion);
+  border-radius: 2px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  /* Slight rotation for organic feel */
+  transform: rotate(-2deg);
+  /* Subtle worn texture effect */
+  opacity: 0.85;
+  box-shadow:
+    inset 0 0 4px rgba(194, 58, 40, 0.3),
+    0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Alternate seal text for variety */
+.chapter[data-chapter="2"]::after,
+.chapter[data-chapter="4"]::after,
+.chapter[data-chapter="6"]::after,
+.chapter[data-chapter="8"]::after { content: '英台'; }
+.chapter[data-chapter="3"]::after,
+.chapter[data-chapter="7"]::after { content: '山伯'; }
 
 /* ── Text blocks ── */
 .chapter__text {
@@ -686,6 +732,19 @@ a:hover { color: var(--vermillion-dim); text-decoration: underline; }
 
   .chapter__illustration {
     margin: 0 -1rem 2rem;
+    outline-offset: 3px;
+    box-shadow:
+      0 0 0 4px var(--rice),
+      0 0 0 5px rgba(26,20,16,0.06),
+      0 2px 12px rgba(26,20,16,0.06);
+  }
+  .chapter__illustration::after {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+    bottom: 8px;
+    right: 10px;
+    border-width: 1.5px;
   }
 
   .chapter__text {
